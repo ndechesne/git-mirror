@@ -1,0 +1,15 @@
+This script can be used to create a local mirror of an existing 
+GIT server that is using gitweb interface, such as http://git.kernel.org.
+
+The script will first fecth the list of all projects on the server,
+and then it will update the local mirror:
+- adding new created trees
+- removing trees that were deleted on the main server
+- updating existing trees
+
+Note: this is only working if the remote GIT server is using the gitweb 
+interface, since it relies on the gitweb project list download link.
+
+Improvements are much than welcome!
+
+
