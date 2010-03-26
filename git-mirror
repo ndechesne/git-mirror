@@ -126,6 +126,7 @@ for ii in `cat $INDEX | cut -d' ' -f1`
 do
     if [ ! -f $ii/HEAD ]; then 
       echo Adding $ii, new tree detected
+      $RM -rf $ii
       $GIT clone --mirror $SERVERGITBASE/$ii $ii
     else
       echo Updating $ii
