@@ -12,4 +12,15 @@ interface, since it relies on the gitweb project list download link.
 
 Improvements are much than welcome!
 
+Example: ./git-mirror -o /var/www/git/ \
+                      -s http://git.omapzoom.org \
+                      -g git://git.omapzoom.org
+
+This example will download all trees available on omapzoom git server.
+
+Once the initial mirror is done, running this command again will only fetch
+the changes.
+
+Don't forget to use the '-n' option first to check what will be done by
+the script.
 
