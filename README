@@ -1,3 +1,32 @@
+################################################################################
+#  Copyright (c) 2010 Texas Instruments
+#
+#  Author: Nicolas Dechesne <n-dechesne@ti.com>
+#
+#  This program is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License as
+#  published by the Free Software Foundation; either version 2 of the
+#  License, or (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+#  USA
+#
+################################################################################
+
+This pacakage contains some scripts to ease the setup and maintenance of a local
+GIT mirror.
+
+--------------------------------------------------------------------------------
+1- git-mirror
+--------------------------------------------------------------------------------
+
 This script can be used to create a local mirror of an existing 
 GIT server that is using gitweb interface, such as http://git.kernel.org.
 
@@ -24,3 +53,17 @@ the changes.
 Don't forget to use the '-n' option first to check what will be done by
 the script.
 
+
+--------------------------------------------------------------------------------
+2- git-update-me
+--------------------------------------------------------------------------------
+
+This scripts assumes that the local GIT server is 'mirroring' a custom list of 
+git trees on various git servers. Unlike git-mirror, which mirrors the whole 
+remote server, this script can be used to cherry-pick some trees.
+
+It requires that the trees are initially cloned on the local server first, with
+git clone --mirror git://xxxxx
+
+The script uses a configuration file that lists all mirror'd trees on the local
+server.

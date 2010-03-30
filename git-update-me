@@ -1,0 +1,100 @@
+#!/bin/sh
+#
+#  Copyright (c) 2010 Texas Instruments
+#
+#  Author: Nicolas Dechesne <n-dechesne@ti.com>
+#
+#  This program is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License as
+#  published by the Free Software Foundation; either version 2 of the
+#  License, or (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+#  USA
+#
+######################################################################
+
+
+usage()
+{
+    echo "usage: $(basename $0) -c <config>"
+cat <<EOF
+This script will update all git trees that are specified in the configuration
+file. For each git tree to update, the script simply fetches all new objects, and prunes
+old objects.
+
+Required options:
+-c <file>     : This is the configuration file. The file format is simple:
+                  - it's a text file
+                  - each line has a absolute path to the root of a git tree to update
+                  - e.g. /var/www/repo/linux/kernel.git
+                
+Other options:
+-h, --help   : Display this help message
+-v           : Verbose mode (set -x)
+-n           : Print only
+
+EOF
+  exit 0
+}
+
+checkparm()
+{
+    if [ "$(echo $1|grep ^'\-')" ];then
+        echo "E: Need an argument"
+        usage
+    fi
+}
+
+
+ECHO=
+
+# parse commandline options
+while [ ! -z "$1" ]; do
+  case $1 in
+    -h|--help)
+      usage
+      ;;
+
+    -v)
+      set -x
+      ;;
+
+    -n)
+      ECHO=echo
+      ;;
+
+    -c)
+      checkparm $2
+      CONFIGFILE="$2"
+      ;;
+
+  esac
+  shift
+done
+
+# used this to manage the 'print only' version
+GIT="$ECHO git"
+CD="$ECHO cd"
+
+if [ ! "${CONFIGFILE}" ] ;then
+    usage
+fi
+
+echo Starting at `date`
+
+for ii in `cat $CONFIGFILE` ; do     
+    echo Updating $ii
+    $CD $ii
+    $GIT fetch 
+    $GIT remote prune origin
+done
+
+echo Completed at `date`
