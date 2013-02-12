@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Git-mirror by ndechesne</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Git-mirror</h1>
+        <h2>Simple script to create and maintain Git mirrors</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/ndechesne/git-mirror/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/ndechesne/git-mirror/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/ndechesne/git-mirror" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>Copyright (c) 2010 Texas Instruments</h1>
+
+<h1>Author: Nicolas Dechesne <a href="mailto:n-dechesne@ti.com">n-dechesne@ti.com</a>
+</h1>
+
+<h1>This program is free software; you can redistribute it and/or</h1>
+
+<h1>modify it under the terms of the GNU General Public License as</h1>
+
+<h1>published by the Free Software Foundation; either version 2 of the</h1>
+
+<h1>License, or (at your option) any later version.</h1>
+
+<h1>This program is distributed in the hope that it will be useful,</h1>
+
+<h1>but WITHOUT ANY WARRANTY; without even the implied warranty of</h1>
+
+<h1>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</h1>
+
+<h1>GNU General Public License for more details.</h1>
+
+<h1>You should have received a copy of the GNU General Public License</h1>
+
+<h1>along with this program; if not, write to the Free Software</h1>
+
+<h1>Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307</h1>
+
+<h1>USA</h1>
+
+<p>This pacakage contains some scripts to ease the setup and maintenance of a local
+GIT mirror.</p>
+
+<hr><h2>1- git-mirror</h2>
+
+<p>This script can be used to create a local mirror of an existing 
+GIT server that is using gitweb interface, such as <a href="http://git.kernel.org">http://git.kernel.org</a>.</p>
+
+<p>The script will first fecth the list of all projects on the server,
+and then it will update the local mirror:</p>
+
+<ul>
+<li>adding new created trees</li>
+<li>removing trees that were deleted on the main server</li>
+<li>updating existing trees</li>
+</ul><p>Note: this is only working if the remote GIT server is using the gitweb 
+interface, since it relies on the gitweb project list download link.</p>
+
+<p>Improvements are much than welcome!</p>
+
+<p>Example: ./git-mirror -o /var/www/git/ \
+                      -s <a href="http://git.omapzoom.org">http://git.omapzoom.org</a> \
+                      -g git://git.omapzoom.org</p>
+
+<p>This example will download all trees available on omapzoom git server.</p>
+
+<p>Once the initial mirror is done, running this command again will only fetch
+the changes.</p>
+
+<p>Don't forget to use the '-n' option first to check what will be done by
+the script.</p>
+
+<hr><h2>2- git-update-me</h2>
+
+<p>This scripts assumes that the local GIT server is 'mirroring' a custom list of 
+git trees on various git servers. Unlike git-mirror, which mirrors the whole 
+remote server, this script can be used to cherry-pick some trees.</p>
+
+<p>It requires that the trees are initially cloned on the local server first, with
+git clone --mirror git://xxxxx</p>
+
+<p>The script uses a configuration file that lists all mirror'd trees on the local
+server.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
