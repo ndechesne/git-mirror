@@ -20,7 +20,7 @@
 #
 ################################################################################
 
-This pacakage contains some scripts to ease the setup and maintenance of a local
+This package contains some scripts to ease the setup and maintenance of a local
 GIT mirror.
 
 --------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ GIT mirror.
 This script can be used to create a local mirror of an existing 
 GIT server that is using gitweb interface, such as http://git.kernel.org.
 
-The script will first fecth the list of all projects on the server,
+The script will first fetch the list of all projects on the server,
 and then it will update the local mirror:
 - adding new created trees
 - removing trees that were deleted on the main server
